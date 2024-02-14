@@ -1,4 +1,6 @@
 .vscode
 venv/
-dataset/*
-RecruitmentTask.pdf
+dataset/pretime
+dataset/*input.txt
+resources/
+__pycache__

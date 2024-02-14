@@ -9,12 +9,12 @@ OUTPUT: Generates a graph input file which parses cit-HepPh.txt as an edge list,
 import sys
 
 
-if len(sys.argv) < 3:
-    print("Expected output filenames as command line arguments")
+if len(sys.argv) != 3:
+    print("Expected output 2 filenames as command line arguments, found", sys.argv)
     exit(1)
 
 graph_file_name = sys.argv[1]
-with open("./dataset/cit-HepPh.txt", "r") as edge_list_file, open(
+with open("./dataset/raw/cit-HepPh.txt", "r") as edge_list_file, open(
     graph_file_name, "w"
 ) as graph_file:
     for line in edge_list_file.readlines():
@@ -28,11 +28,11 @@ with open("./dataset/cit-HepPh.txt", "r") as edge_list_file, open(
         else:
             from_id, to_id = line.split()
             # graph_file.write(f"{from_id} {to_id}\n")
-            graph_file.write(line + '\n')
+            graph_file.write(line + "\n")
 
 
 date_map_file_name = sys.argv[2]
-with open("./dataset/cit-HepPh-dates.txt", "r") as date_file, open(
+with open("./dataset/raw/cit-HepPh-dates.txt", "r") as date_file, open(
     date_map_file_name, "w"
 ) as date_map_file:
     for line in date_file.readlines():
