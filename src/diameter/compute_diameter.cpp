@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
         cerr << "Computing " << date << endl;
         auto graph = readGraph(date);
         int n = (int)graph.size();
-        int currdia = getDiameter(graph, max(n / 5, 1500));
+        int currdia = getDiameter(graph, max(n / 3, 1500));
         cout << date << " " << graph.size() << " " << currdia << "\n";
     }
 }

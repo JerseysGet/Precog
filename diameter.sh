@@ -2,14 +2,14 @@
 
 PWD=$(pwd)
 
-CPP_FLAGS="-O2 -std=c++20"
+CPP_FLAGS="-O2 -std=c++20 -fopenmp"
 CPP_DEPS="$PWD/src/file_io/file_util.cpp $PWD/src/diameter/diameter.cpp $PWD/src/diameter/compute_diameter.cpp"
 DIAMETER_INFO_FILE="$PWD/dataset/computed/diameter_info.txt"
 
 if [ ! -f $DIAMETER_INFO_FILE ]; then
     echo "$DIAMETER_INFO_FILE not found, computing" 
     g++ $CPP_FLAGS $CPP_DEPS -o cc_compute.out
-    ./cc_compute.out $DIAMETER_INFO_FILE
+    time ./cc_compute.out $DIAMETER_INFO_FILE
     rm cc_compute.out
 else 
     echo "$DIAMETER_INFO_FILE found"

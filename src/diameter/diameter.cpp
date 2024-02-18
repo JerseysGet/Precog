@@ -60,7 +60,9 @@ int getDiameter(vector<vector<int>>& adjLists, int numToCheck) {
     }
 
     int ret = 0;
-    for (int i = 0; i < n; i++)
+    #pragma omp parallel for reduction(max: ret)
+    for (int i = 0; i < n; i++) {
         if (toChoose[i]) ret = max(ret, longestPathFrom(i, adj));
+    }
     return ret;
 }
