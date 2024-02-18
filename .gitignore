@@ -4,5 +4,6 @@ dataset/pretime
 dataset/*input.txt
 *.out
 *.o
-resources/
+*.pdf
+
 __pycache__
