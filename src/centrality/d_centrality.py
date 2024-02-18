@@ -38,8 +38,8 @@ with open(COMPUTED_FILE, "r") as cc_file:
         avg.append(average)
 
 plt.figure(num="Maximum degree centrality vs time")
-# plt.plot(dates, max_in, label="Maximum in-degree")
-# plt.plot(dates, max_out, label="Maximum out-degree")
+plt.plot(dates, max_in, label="Maximum in-degree")
+plt.plot(dates, max_out, label="Maximum out-degree")
 plt.plot(dates, avg, label="Average degree")
 plt.legend()
 plt.savefig("images/d_centrality.png")
