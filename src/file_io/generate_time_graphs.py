@@ -21,16 +21,16 @@ def get_total_graph(graph_input_path, date_map):
 
 
 def get_pretime_graph(total_graph, date, date_map):
-    """Returns the subgraph with all nodes < date"""
+    """Returns the subgraph with all nodes <= date"""
     ret = nx.DiGraph()
 
     for node in date_map:
-        if date_map[node] >= date:
+        if date_map[node] > date:
             continue
         ret.add_node(node)
 
     for u, v in total_graph.edges:
-        if date_map[u] >= date or date_map[v] >= date:
+        if date_map[u] > date or date_map[v] > date:
             # print(u, v, date_map[u], date_map[v])
             continue
         ret.add_edge(u, v)
@@ -45,11 +45,16 @@ graph_input_path = sys.argv[1]
 date_input_path = sys.argv[2]
 graph_output_dir = sys.argv[3]
 
-date_map = file_util.read_date_input(date_input_path)
+date_map = file_util.read_date_input(graph_input_path, date_input_path)
 total_graph = get_total_graph(graph_input_path, date_map)
-earliest_date = min(list(date_map.values()))
-latest_date = max(list(date_map.values()))
+earliest_date = file_util.prev_month(min(list(date_map.values())))
+latest_date = file_util.next_month(max(list(date_map.values())))
+
+earliest_date = earliest_date.replace(day=1)
+latest_date = latest_date.replace(day=1)
+
 file_util.add_past_nodes_to_map(total_graph, date_map)
+
 
 
 date_itr = earliest_date

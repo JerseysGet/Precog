@@ -25,14 +25,23 @@ def write_graph(graph, file_path):
             file.write(f"{mp[edge[0]]} {mp[edge[1]]}\n")
 
 
-def read_date_input(date_input_path):
+def read_date_input(graph_input_path, date_input_path):
+    node_set = set()
+    with open(graph_input_path, "r") as graph_input:
+        (nodect, edgect) = map(int, graph_input.readline().split())
+        for line in graph_input.readlines():
+            (u, v) = map(int, line.split())
+            node_set.add(u)
+            node_set.add(v)
+        
     ret = {}
     with open(date_input_path, "r") as date_input:
         for line in date_input.readlines():
             (node, date_str) = line.split()
             node = int(node)
             (year, month, day) = map(int, date_str.split("-"))
-            ret[node] = date(year, month, day)
+            if node in node_set:
+                ret[node] = date(year, month, day)
     return ret
 
 
@@ -44,6 +53,10 @@ def add_past_nodes_to_map(total_graph, date_map):
 
 def next_month(Date):
     next_date = Date + relativedelta(months=1)
+    return next_date
+
+def prev_month(Date):
+    next_date = Date - relativedelta(months=1)
     return next_date
 
 def read_graph(path):

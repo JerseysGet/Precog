@@ -2,5 +2,7 @@
 venv/
 dataset/pretime
 dataset/*input.txt
+*.out
+*.o
 resources/
 __pycache__
