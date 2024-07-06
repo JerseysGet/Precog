@@ -2,10 +2,6 @@
 
 ## Programming Tasks
 
-### Tasks not done:
-- Partially done Task 2.1: Only implemented one algorithm, as I was unable to implement Leiden in time, and Girvan–Newman would take too long to run on my system
-- Bonus Task
-
 ### [Requirements](https://github.com/JerseysGet/Precog/blob/main/requirements.txt)
 Clone the repo, and in the `Precog` directory,
 Install the requirements by running:
